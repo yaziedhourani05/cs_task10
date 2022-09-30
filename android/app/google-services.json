@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "990782984427",
+    "project_id": "road-to-fitness-dev",
+    "storage_bucket": "road-to-fitness-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:990782984427:android:22011c106c6e767cdbeeae",
+        "android_client_info": {
+          "package_name": "com.example.fitness_app_riverpod"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "990782984427-ju1rnv25fn53d3fve6dvhfpho48ii8gf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHvrvHzj84t_QBgWIdL_2KYxLIeBqvAgI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "990782984427-ju1rnv25fn53d3fve6dvhfpho48ii8gf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
