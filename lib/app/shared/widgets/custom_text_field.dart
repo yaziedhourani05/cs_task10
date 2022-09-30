@@ -14,11 +14,13 @@ class CustomTextField extends StatelessWidget {
     this.validator,
     this.maxLength,
     this.keyboardType,
+    this.obsecureText,
   }) : super(key: key);
   final Function(String?)? onSaved;
-  final Function(String)? onChanged;
+  final Function(String?)? onChanged;
   final TextEditingController? controller;
   final String labelText;
+  final bool? obsecureText;
   final String? initialValue;
   final double? customWidth;
   final Function()? onTap;
@@ -30,20 +32,21 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+      padding: const EdgeInsets.fromLTRB(8, 20, 8, 20),
       child: Container(
         width: customWidth ?? 200,
-        height: 100,
         child: TextFormField(
           controller: controller,
           onSaved: onSaved,
           onChanged: onChanged,
           validator: validator,
           initialValue: initialValue,
+          obscureText: obsecureText ?? false,
           maxLength: maxLength,
           keyboardType: keyboardType,
           decoration: InputDecoration(
             labelText: labelText,
+            floatingLabelStyle: const TextStyle(color: Colors.orange),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(width: 1.0),
