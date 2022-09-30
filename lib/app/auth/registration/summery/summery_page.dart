@@ -44,105 +44,115 @@ class ProfileSummeryPage extends HookConsumerWidget {
       },
       data: (data) {
         //data retrieved
-        return SafeArea(
-          bottom: false,
-          child: Scaffold(
-            //present data
-            body: Column(
-              children: [
-                const CustomHeader(
-                    title: 'Profile Summery', enableLeading: true),
-                const CustomHeader(
-                    title: 'personal Info', enableLeading: false),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          const Text('first name: '),
-                          Text(data.firstName),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Text('email: '),
-                          Text(data.email),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Text('last name: '),
-                          Text(data.lastName),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Text('Date of Birth: '),
-                          Text(data.dob.toString()),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Text('Address: '),
-                          Text(data.address),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Text('School: '),
-                          Text(data.school),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                const Divider(),
-                const CustomHeader(title: 'fitness Info', enableLeading: false),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          const Text('Height: '),
-                          Text(data.height.toString()),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Text('Weight: '),
-                          Text(data.height.toString()),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Text('Days of exercise per week : '),
-                          Text(data.numberOfExerciseDays.toString()),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                CustomElevatedButton(
-                  label: 'done',
-                  onPressed: () {
-                    //checks if user is coming from workouts
-                    if (ref.read(fromWorkoutsPage) == true) {
-                      Navigator.pop(context);
-                    } else {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return const WorkoutsPage();
-                          },
+        return WillPopScope(
+          onWillPop: () async {
+            if (Navigator.of(context).userGestureInProgress) {
+              return false;
+            } else {
+              return true;
+            }
+          },
+          child: SafeArea(
+            bottom: false,
+            child: Scaffold(
+              //present data
+              body: Column(
+                children: [
+                  const CustomHeader(
+                      title: 'Profile Summery', enableLeading: true),
+                  const CustomHeader(
+                      title: 'personal Info', enableLeading: false),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            const Text('first name: '),
+                            Text(data.firstName),
+                          ],
                         ),
-                      );
-                    }
-                  },
-                ),
-              ],
+                        Row(
+                          children: [
+                            const Text('email: '),
+                            Text(data.email),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const Text('last name: '),
+                            Text(data.lastName),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const Text('Date of Birth: '),
+                            Text(data.dob.toString()),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const Text('Address: '),
+                            Text(data.address),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const Text('School: '),
+                            Text(data.school),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Divider(),
+                  const CustomHeader(
+                      title: 'fitness Info', enableLeading: false),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            const Text('Height: '),
+                            Text(data.height.toString()),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const Text('Weight: '),
+                            Text(data.height.toString()),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const Text('Days of exercise per week : '),
+                            Text(data.numberOfExerciseDays.toString()),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  CustomElevatedButton(
+                    label: 'done',
+                    onPressed: () {
+                      //checks if user is coming from workouts
+                      if (ref.read(fromWorkoutsPage) == true) {
+                        Navigator.pop(context);
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const WorkoutsPage();
+                            },
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         );

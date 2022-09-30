@@ -34,7 +34,7 @@ class FitnessInfoPageView extends HookConsumerWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CustomTextField(
-                      labelText: 'Height',
+                      labelText: 'Height(Cm)',
                       maxLength: 7,
                       keyboardType: TextInputType.number,
                       initialValue: data.height.toString(),
@@ -51,9 +51,9 @@ class FitnessInfoPageView extends HookConsumerWidget {
                         if (value == '') {
                           return 'please enter height';
                         } else if (double.parse(value!) > 300) {
-                          return 'please enter correct height';
+                          return 'please enter correct height: <600';
                         } else if (double.parse(value) <= 0) {
-                          return 'please enter correct height';
+                          return 'please enter correct height >';
                         } else {
                           return null;
                         }
@@ -65,7 +65,7 @@ class FitnessInfoPageView extends HookConsumerWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CustomTextField(
-                      labelText: 'Weight',
+                      labelText: 'Weight(Kg)',
                       maxLength: 7,
                       initialValue: data.weight.toString(),
                       onSaved: (value) {

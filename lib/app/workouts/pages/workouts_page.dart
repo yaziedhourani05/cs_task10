@@ -14,32 +14,41 @@ class WorkoutsPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            const Text('workouts_page.dart'),
-            CustomElevatedButton(
-              label: 'log out',
-              onPressed: () {
-                return UserService.logout();
-              },
-            ),
-            CustomElevatedButton(
-              label: 'profile summary',
-              onPressed: () {
-                ref.watch(fromWorkoutsPage.notifier).state = true;
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const ProfileSummeryPage();
-                    },
-                  ),
-                );
-              },
-            ),
-          ],
+    return WillPopScope(
+      onWillPop: () async {
+        if (Navigator.of(context).userGestureInProgress) {
+          return false;
+        } else {
+          return true;
+        }
+      },
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            children: [
+              const Text('workouts_page.dart'),
+              CustomElevatedButton(
+                label: 'log out',
+                onPressed: () {
+                  return UserService.logout();
+                },
+              ),
+              CustomElevatedButton(
+                label: 'profile summary',
+                onPressed: () {
+                  ref.watch(fromWorkoutsPage.notifier).state = true;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const ProfileSummeryPage();
+                      },
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
